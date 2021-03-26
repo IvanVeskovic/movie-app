@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Logo from './img/netflix_logo.png';
-import User from './img/netflix_user.png';
+import Logo from '../img/netflix_logo.png';
+import User from '../img/netflix_user.png';
 
 import './nav.css';
 

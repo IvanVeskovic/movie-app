@@ -6,8 +6,9 @@
     padding: 20px;
     display: flex;
     justify-content: space-between;
-
     transition: all .5s ease-in;
+    height: 70px;
+    align-items: center;
 }
 
 .nav__black {
@@ -23,3 +24,39 @@
     width: 30px;
     object-fit: contain;
 }
+
+.nav__results {
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    width: 400px;
+    background-color: rgb(190, 190, 190);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.nav__results__item {
+    font-size: 15px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: .3rem;
+    background-color: rgba(110, 110, 110, 0.534);
+    transition: all .2s;
+}
+
+.nav__results__item:hover {
+    background-color: rgba(110, 110, 110, 0.774);
+
+}
+
+.nav__results__item:not(:last-child) {
+    margin-bottom: .2rem;
+}
+
+.nav__results__img {
+    width: 100px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 1rem;
+} 

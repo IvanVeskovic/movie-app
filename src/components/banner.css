@@ -1,14 +1,23 @@
 .banner {
     color: #fff;
     object-fit: contain;
-    height: 448px;
+    height: 80vh;
     margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .banner__contents {
     margin-left: 30px;
-    padding-top: 140px;
+    /* padding-top: 140px; */
     /* height: 190px; */
+    background: rgba(29, 29, 29, 0.548);
+    padding: 1rem 3rem;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .banner__title {
@@ -55,4 +64,5 @@
         rgba(37, 37,37, .61) 25%,
         #111 90%
     );
+    margin-top: auto;
 }

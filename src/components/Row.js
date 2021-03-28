@@ -4,6 +4,8 @@ import axios from './axios';
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
 
+import { Link } from 'react-router-dom';
+
 import './row.css';
 
 const base_url = "https://image.tmdb.org/t/p/original/";
@@ -47,12 +49,20 @@ const Row = ({title, fetchUrl, isLargeRow}) => {
             <div className="row__posters">
                 {
                     movies.map(movie => (
-                        <img 
-                        key={movie.id}
-                        onClick={() => handleClick(movie)}
-                        className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-                        src={`${base_url}${movie.poster_path}`} 
-                        alt={movie.original_name} />
+                            <div className="row__poster-holder" key={movie.id}>
+                                <img 
+                                
+                                onClick={() => handleClick(movie)}
+                                className={`row__poster ${isLargeRow && "row__posterLarge"}`}
+                                src={`${base_url}${movie.poster_path}`} 
+                                alt={movie.original_name} />
+                                <Link to={`/about/${movie.id}`}>
+                                    <div className="row__poster__more">
+                                        <i className="fas fa-info-circle"></i>
+                                        <div>Rating: {movie.vote_average}</div>
+                                    </div>    
+                                </Link>
+                            </div>
                     ))
                 }
             </div>

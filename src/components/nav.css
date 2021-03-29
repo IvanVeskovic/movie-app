@@ -26,13 +26,18 @@
 }
 
 .nav__results {
-    position: absolute;
+    position: fixed;
     right: 20px;
     top: 60px;
     width: 400px;
     background-color: rgb(190, 190, 190);
     border-radius: 3px;
-    overflow: hidden;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+.nav__results::-webkit-scrollbar {
+    display: none;
 }
 
 .nav__results__item {

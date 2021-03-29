@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import './banner.css';
 
@@ -29,7 +30,9 @@ const Banner = ({movieParam}) => {
                 </h1>
 
                 <div className="banner_buttons">
-                    <button className="banner__button">Play</button>
+                    <Link to={`/about/${movie.id}`}>
+                        <button className="banner__button">More</button>
+                    </Link>
                     <button className="banner__button">My List</button>
                 </div>
                 <p className="banner__description">

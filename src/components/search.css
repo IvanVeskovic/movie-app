@@ -3,7 +3,7 @@ form {
 }
 
 .search {
-    background-color: rgb(190, 190, 190);
+    background-color: rgba(190, 190, 190, 0.829);
     border: none;
     outline: none;
     padding: 10px;

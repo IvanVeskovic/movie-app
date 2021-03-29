@@ -29,7 +29,6 @@ const Nav = () => {
                 const req = await axios.get(`/search/movie?api_key=6adf23324df69a693d26feff956cd872&language=en-US&query=${search}`)
 
                 setResults(req.data.results.slice(0, 10));
-                console.log(req.data);
             }
         }
         fetchData();

@@ -23,7 +23,7 @@ const Home = () => {
         <div className="home">
             <Banner movieParam={movie} />
             
-            <Row title="NETFLIX ORIGINALS" fetchUrl={request.fetchNetflixOriginals} isLargeRow />
+            <Row title="NETFLIX ORIGINALS" fetchUrl={request.fetchNetflixOriginals} isLargeRow={true} />
             <Row title="Trending Now" fetchUrl={request.fetchTrending} />
             <Row title="Top Rated" fetchUrl={request.fetchTopRated} />
             <Row title="Action Movies" fetchUrl={request.fetchActionMovies} />

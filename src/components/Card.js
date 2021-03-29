@@ -5,6 +5,7 @@ import './card.css'
 const base_url = "https://image.tmdb.org/t/p/original/";
 
 const Card = ({movie, isLargeRow, handleClick}) => {
+
     return ( 
         <div className='card'>
             <img   

@@ -60,7 +60,7 @@ const About = () => {
             <Banner movieParam={movie} />
 
             <h2 className='about__heading'>Trailer</h2>
-            <YouTube videoId={trailerUrl} opts={opts}/>
+            <YouTube videoId={trailerUrl} opts={opts} />
 
 
             <h2 className="about__heading">

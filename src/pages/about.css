@@ -9,6 +9,10 @@
     margin: 2rem 0;
 }
 
+.about__video:first-child {
+    margin: 0 auto;
+}
+
 .cast {
     color: #fff;
     margin: 0 auto;

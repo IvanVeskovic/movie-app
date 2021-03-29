@@ -7,7 +7,7 @@ import movieTrailer from 'movie-trailer';
 import './row.css';
 import Card from './Card';
 
-const Row = ({title, fetchUrl}) => {
+const Row = ({title, fetchUrl, isLargeRow}) => {
     const [movies, setMovies] = useState([]);
     const [trailerUrl, setTrailerUrl] = useState('');
 
@@ -48,6 +48,7 @@ const Row = ({title, fetchUrl}) => {
             <div className="row__posters">
                 {
                     movies.map(movie => (
+                            <Card movie={movie} key={movie.id} handleClick={handleClick} trailerUrl={trailerUrl} setTrailerUrl={setTrailerUrl} isLargeRow />
                             // <div className="row__poster-holder" key={movie.id}>
                             //     <img 
                                 
@@ -61,9 +62,9 @@ const Row = ({title, fetchUrl}) => {
                             //             <div>Rating: {movie.vote_average}</div>
                             //         </div>    
                             //     </Link>
-                            // </div>
+                            //  </div>
 
-                            <Card movie={movie} key={movie.id} handleClick={handleClick} trailerUrl={trailerUrl} setTrailerUrl={setTrailerUrl} isLargeRow />
+                            
                     ))
                 }
             </div>

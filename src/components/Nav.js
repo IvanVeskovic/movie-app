@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Logo from '../img/netflix_logo.png';
+import Logo from '../img/logo.png';
 import { Link } from 'react-router-dom';
 import axios from './axios';
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './banner.css';
 
-const Banner = ({movieParam}) => {
+const Banner = ({movieParam, isTvShow}) => {
     const [movie, setMovie] = useState([]);
 
     useEffect(() => {
@@ -29,8 +29,8 @@ const Banner = ({movieParam}) => {
                     {movie?.title || movie?.name || movie?.original_name}
                 </h1>
 
-                <div className="banner_buttons">
-                    <Link to={`/about/${movie.id}`}>
+                <div className="banner__buttons">
+                    <Link to={`/about/${isTvShow ? 'tv' : 'movie'}/${movie.id}`}>
                         <button className="banner__button">More</button>
                     </Link>
                     <button className="banner__button">My List</button>
@@ -38,6 +38,10 @@ const Banner = ({movieParam}) => {
                 <p className="banner__description">
                     {truncate(movie?.overview, 150)}
                 </p>
+
+                <div className="banner__rating">
+                    {movie.vote_average}
+                </div>
             </div>
             <div className="banner--fadeBottom"></div>
 

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import axios from '../components/axios';
 import Banner from "../components/Banner";
 
@@ -11,6 +11,7 @@ import Suggestions from "../components/Suggestions";
 
 const About = () => {
     const {id} = useParams();
+    const {type} = useParams();
     const [movie, setMovie] = useState([]);
     const [cast, setCast] = useState([]);
     const [show, setShow] = useState(10);
@@ -21,7 +22,7 @@ const About = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const req = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=6adf23324df69a693d26feff956cd872&language=en-US`);
+            const req = await axios.get(`https://api.themoviedb.org/3/${type}/${id}?api_key=6adf23324df69a693d26feff956cd872&language=en-US`);
             setMovie(req.data);
         }
         fetchData();
@@ -29,7 +30,7 @@ const About = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const req = await axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=6adf23324df69a693d26feff956cd872&language=en-US`);
+            const req = await axios.get(`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=6adf23324df69a693d26feff956cd872&language=en-US`);
             setCast(req.data.cast);
         }
         fetchData();
@@ -46,6 +47,10 @@ const About = () => {
             autplay: 1
         },
     };
+
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0)
+    });
 
     const handleLoad = (movie) => {
         movieTrailer(movie?.title || movie?.name || movie?.original_name || " ")

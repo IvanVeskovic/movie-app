@@ -41,8 +41,22 @@ const Nav = () => {
     return ( 
         <nav className={`nav ${show && 'nav__black'}`}>
             <Link to='/'>
-                <img src={Logo} alt="Netflix Logo" className='nav__logo' />
+                {/* <img src={Logo} alt="Netflix Logo" className='nav__logo' /> */}
+                <span className='nav__logo'>M&T</span>
             </Link>
+
+            <div className="nav__pages">
+                <div className="nav__link">
+                    <Link to='/'>
+                        Movies
+                    </Link>
+                </div>
+                <div className="nav__link">
+                    <Link to='/tvshows' >
+                        TV Shows    
+                    </Link>
+                </div>
+            </div>
 
             <Search search={search} setSearch={setSearch} results={results} handleClearResults={handleClearResults} />
             {   search

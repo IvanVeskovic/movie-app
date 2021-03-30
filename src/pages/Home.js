@@ -11,7 +11,7 @@ const Home = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const req = await axios.get(request.fetchNetflixOriginals);
+            const req = await axios.get(request.fetchNetflixOriginalsMovie);
             setMovie(req.data.results[Math.floor(Math.random() * req.data.results.length -1)]);
             return request;
         }
@@ -23,7 +23,7 @@ const Home = () => {
         <div className="home">
             <Banner movieParam={movie} />
             
-            <Row title="NETFLIX ORIGINALS" fetchUrl={request.fetchNetflixOriginals} isLargeRow={true} />
+            <Row title="NETFLIX ORIGINALS" fetchUrl={request.fetchNetflixOriginalsMovie} isLargeRow />
             <Row title="Trending Now" fetchUrl={request.fetchTrending} />
             <Row title="Top Rated" fetchUrl={request.fetchTopRated} />
             <Row title="Action Movies" fetchUrl={request.fetchActionMovies} />

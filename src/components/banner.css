@@ -14,16 +14,17 @@
     /* height: 190px; */
     background: rgba(29, 29, 29, 0.548);
     padding: 1rem 3rem;
-
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    overflow: hidden;
 }
 
 .banner__title {
     font-size: 3rem;
     font-weight: 800;
     padding-bottom: .3rem;
+    margin-right: 2rem;
 }
 
 .banner__description {
@@ -65,4 +66,18 @@
         #111 90%
     );
     margin-top: auto;
+}
+
+.banner__rating {
+    position: absolute;
+    top: 15px;
+    right: -40px;
+    font-size: 20px;
+    background-color: #e74c3c;
+    padding: 5px;
+    width: 150px;
+    text-align: center;
+    transform: rotate(45deg);
+    /* border-radius: 50px; */
+    font-weight: 700;
 }

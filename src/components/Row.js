@@ -7,7 +7,7 @@ import movieTrailer from 'movie-trailer';
 import './row.css';
 import Card from './Card';
 
-const Row = ({title, fetchUrl, isLargeRow}) => {
+const Row = ({title, fetchUrl, isLargeRow, isTvShow}) => {
     const [movies, setMovies] = useState([]);
     const [trailerUrl, setTrailerUrl] = useState('');
 
@@ -18,7 +18,7 @@ const Row = ({title, fetchUrl, isLargeRow}) => {
             return request;
         }
         fetchData();
-    }, [fetchUrl])
+    }, [fetchUrl]);
 
     const opts = {
         height: '390px',
@@ -27,7 +27,7 @@ const Row = ({title, fetchUrl, isLargeRow}) => {
             autplay: 1
         },
     };
-
+    
     const handleClick = (movie) => {
         if(trailerUrl){
             setTrailerUrl('');
@@ -38,33 +38,17 @@ const Row = ({title, fetchUrl, isLargeRow}) => {
                 setTrailerUrl(urlParams.get('v'));
             }).catch(err => console.log(err, movie.title))
         }
-    }
+    };
 
-    
-    
     return ( 
         <div className='row'>
             <h2>{title}</h2>
             <div className="row__posters">
                 {
+                    movies 
+                    &&
                     movies.map(movie => (
-                            <Card movie={movie} key={movie.id} handleClick={handleClick} trailerUrl={trailerUrl} setTrailerUrl={setTrailerUrl} isLargeRow />
-                            // <div className="row__poster-holder" key={movie.id}>
-                            //     <img 
-                                
-                            //     onClick={() => handleClick(movie)}
-                            //     className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-                            //     src={`${base_url}${movie.poster_path}`} 
-                            //     alt={movie.original_name} />
-                            //     <Link to={`/about/${movie.id}`}>
-                            //         <div className="row__poster__more">
-                            //             <i className="fas fa-info-circle"></i>
-                            //             <div>Rating: {movie.vote_average}</div>
-                            //         </div>    
-                            //     </Link>
-                            //  </div>
-
-                            
+                        <Card movie={movie} key={movie.id} handleClick={handleClick} trailerUrl={trailerUrl} setTrailerUrl={setTrailerUrl} isLargeRow={isLargeRow} isTvShow={isTvShow} />
                     ))
                 }
             </div>

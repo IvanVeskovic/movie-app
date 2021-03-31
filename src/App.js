@@ -15,12 +15,12 @@ function App() {
           <Route exact path='/'>
             <Home />
           </Route>
-          <Route path='/tvshows'>
+          <Route path='/tv'>
             <TvShows />
           </Route>
-          <Route path="/about/:type/:id" component={About} />
-            {/* <About />
-          </Route> */}
+          <Route path="/about/:type/:id">
+            <About />
+          </Route>
         </Switch>
         
       </div>

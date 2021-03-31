@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Logo from '../img/logo.png';
 import { Link } from 'react-router-dom';
 import axios from './axios';
 
@@ -41,7 +40,6 @@ const Nav = () => {
     return ( 
         <nav className={`nav ${show && 'nav__black'}`}>
             <Link to='/'>
-                {/* <img src={Logo} alt="Netflix Logo" className='nav__logo' /> */}
                 <span className='nav__logo'>M&T</span>
             </Link>
 
@@ -52,7 +50,7 @@ const Nav = () => {
                     </Link>
                 </div>
                 <div className="nav__link">
-                    <Link to='/tvshows' >
+                    <Link to='/tv' >
                         TV Shows    
                     </Link>
                 </div>

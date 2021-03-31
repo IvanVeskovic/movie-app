@@ -1,10 +1,13 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import axios from '../components/axios';
+import Axios from 'axios';
 import Banner from "../components/Banner";
 
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
+
+import spinner from '../img/spinner.gif';
 
 import './about.css'
 import Suggestions from "../components/Suggestions";
@@ -15,26 +18,44 @@ const About = () => {
     const [movie, setMovie] = useState([]);
     const [cast, setCast] = useState([]);
     const [show, setShow] = useState(10);
-
     const [trailerUrl, setTrailerUrl] = useState('')
 
     const base_url = "https://image.tmdb.org/t/p/original/";
 
     useEffect(() => {
+        // const source = Axios.CancelToken.source();
+        const source = Axios.CancelToken.source();
+
         const fetchData = async () => {
-            const req = await axios.get(`https://api.themoviedb.org/3/${type}/${id}?api_key=6adf23324df69a693d26feff956cd872&language=en-US`);
-            setMovie(req.data);
+            try {
+                const req = await axios.get(`/${type}/${id}?api_key=6adf23324df69a693d26feff956cd872&language=en-US`, {cancelToken: source.token});
+                setMovie(req.data);
+            } catch (err) {
+                if(Axios.isCancel(err)){
+                    console.log("cought cancel");
+                } else {
+                    throw err;
+                }
+            }
         }
         fetchData();
-    }, [id]);
+
+        return () => {
+            source.cancel();
+        }
+    }, [id, type]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const req = await axios.get(`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=6adf23324df69a693d26feff956cd872&language=en-US`);
+            const req = await axios.get(`/${type}/${id}/credits?api_key=6adf23324df69a693d26feff956cd872&language=en-US`);
             setCast(req.data.cast);
         }
         fetchData();
-    }, [id]);
+    }, [id, type, movie]);
+
+    useEffect(() => {
+        handleLoad(movie);
+    }, [movie])
 
     const handleShow = (e) => {
         setShow(show + 10);
@@ -57,15 +78,15 @@ const About = () => {
             .then(url => {
                 const urlParams = new URLSearchParams(new URL(url).search);
                 setTrailerUrl(urlParams.get('v'));
-            }).catch(err => console.log(err, movie.title));
+            }).catch(err => console.log(err));
     }
 
     return ( 
-        <div className='about' onLoad={() => handleLoad(movie)}>
+        <div className='about' >
             <Banner movieParam={movie} />
 
             <h2 className='about__heading'>Trailer</h2>
-            <YouTube videoId={trailerUrl} opts={opts} />
+           { <YouTube videoId={trailerUrl} opts={opts} /> || spinner}
 
 
             <h2 className="about__heading">
@@ -88,7 +109,7 @@ const About = () => {
             </div>
 
             <h2 className="about__heading">Suggestions</h2>
-            <Suggestions id={movie.id} />
+            {movie && <Suggestions id={movie.id} />}
         </div>
      );
 }

@@ -11,16 +11,15 @@ const TvShows = () => {
             const fetchData = async () => {
                 const req = await axios.get(request.fetchTvCrime);
                 setTvShow(req.data.results[Math.floor(Math.random() * req.data.results.length -1)]);
-                console.log(tvShow);
             }
             fetchData();
         }, [])
-    console.log(tvShow);
+        
     return ( 
         <div className='tv'>
-            <Banner movieParam={tvShow} />
+            <Banner movieParam={tvShow} isTvShow />
             
-            <Row title="NETFLIX ORIGINALS" fetchUrl={request.fetchNetflixOriginalsTv} isLargeRow isTvShow />
+            <Row title="NETFLIX ORIGINALS" fetchUrl={request.fetchNetflixOriginalsTv} isLargeRow isTvShow/>
             <Row title="Top Rated" fetchUrl={request.fetchTvTopRated} isTvShow/>
             <Row title="Action" fetchUrl={request.fetchTvAction} isTvShow />
             <Row title="Comedy" fetchUrl={request.fetchTvComedy} isTvShow />

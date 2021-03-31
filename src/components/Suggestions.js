@@ -11,7 +11,7 @@ const Suggestions = ({id}) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const request = await axios.get(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=6adf23324df69a693d26feff956cd872&language=en-US&page=1`);
+            const request = await axios.get(`/movie/${id}/similar?api_key=6adf23324df69a693d26feff956cd872&language=en-US&page=1`);
 
             setMovies(request.data.results.slice(0, 5));
         }

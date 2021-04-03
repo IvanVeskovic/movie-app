@@ -19,9 +19,6 @@ const request = {
     fetchTvDocumentaries: `/tv/top_rated?api_key=${API_KEY}&with_genres=99`,
     fetchTvAniamtion: `/tv/top_rated?api_key=${API_KEY}&with_genres=16`,
     fetchSciFi: `/tv/top_rated?api_key=${API_KEY}&with_genres=10765`
-
-
-
 }
 
 export default request;

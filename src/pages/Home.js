@@ -1,13 +1,14 @@
-import Banner from "../components/Banner";
+import Header from "../components/Header";
 import Row from "../components/Row";
 import request from '../components/request';
 
 import axios from '../components/axios';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { MovieContext } from "../components/MovieContext";
 
 const Home = () => {
-
     const [movie, setMovie] = useState([]);
+    const [myList] = useContext(MovieContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,8 +22,9 @@ const Home = () => {
 
     return ( 
         <div className="home">
-            <Banner movieParam={movie} />
+            <Header movieParam={movie}/>
             
+            {myList[0] && <Row title="My List" isFavorite isLargeRow />}
             <Row title="NETFLIX ORIGINALS" fetchUrl={request.fetchNetflixOriginalsMovie} isLargeRow />
             <Row title="Trending Now" fetchUrl={request.fetchTrending} />
             <Row title="Top Rated" fetchUrl={request.fetchTopRated} />

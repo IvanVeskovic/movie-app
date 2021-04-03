@@ -22,24 +22,31 @@
     transition: all 450ms;
 }
 
-.card__poster:hover + a .card__poster__more {
-    /* visibility: visible;
-    opacity: 1; */
-}
-
 .card__poster__more {
     position: absolute;
-    top: 2%;
+    top: 1%;
     right: 5%;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     transition: all .3s;
-    font-size: 40px;
+    font-size: 35px;
     visibility: hidden;
     opacity: 0;
     color: #e74c3c;
+}
+
+.card__poster__more i {
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.card__poster__more i:hover {
+    transform: scale(1.1);
+    color: #fff;
+
 }
 
 .card__posterLarge {

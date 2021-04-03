@@ -9,6 +9,11 @@
     margin-bottom: 0;
 }
 
+.row__heading--main {
+    color: #e74d3c;
+    text-transform: uppercase;
+}
+
 .row__posters {
     display: flex;
     overflow-y: hidden;

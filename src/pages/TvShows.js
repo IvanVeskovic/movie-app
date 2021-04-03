@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import request from '../components/request';
 import axios from '../components/axios';
-import Banner from '../components/Banner';
+import Header from '../components/Header';
 import Row from '../components/Row';
+import { MovieContext } from '../components/MovieContext';
 
 const TvShows = () => {
     const [tvShow, setTvShow] = useState([]);
+    const [myList] = useContext(MovieContext);
 
         useEffect(() => {
             const fetchData = async () => {
@@ -17,8 +19,9 @@ const TvShows = () => {
         
     return ( 
         <div className='tv'>
-            <Banner movieParam={tvShow} isTvShow />
+            <Header movieParam={tvShow} isTvShow />
             
+            {myList[0] && <Row title="My List" isFavorite isLargeRow />}
             <Row title="NETFLIX ORIGINALS" fetchUrl={request.fetchNetflixOriginalsTv} isLargeRow isTvShow/>
             <Row title="Top Rated" fetchUrl={request.fetchTvTopRated} isTvShow/>
             <Row title="Action" fetchUrl={request.fetchTvAction} isTvShow />

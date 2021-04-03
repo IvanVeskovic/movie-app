@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import axios from '../components/axios';
 import Axios from 'axios';
-import Banner from "../components/Banner";
+import Header from "../components/Header";
 
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
@@ -83,7 +83,7 @@ const About = () => {
 
     return ( 
         <div className='about' >
-            <Banner movieParam={movie} />
+            <Header movieParam={movie} />
 
             <h2 className='about__heading'>Trailer</h2>
            { <YouTube videoId={trailerUrl} opts={opts} /> || spinner}

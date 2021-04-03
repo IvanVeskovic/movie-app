@@ -7,7 +7,7 @@ form {
     border: none;
     outline: none;
     padding: 10px;
-    color: #fff;
+    color: transparent;
     font-size: 15px;
     border-radius: 3px;
     letter-spacing: .5px;
@@ -15,16 +15,16 @@ form {
     transition: all .5s ease-in-out;
 }
 
-.search--focus {
-    max-width: 250px;
-}
-
 .search::placeholder {
     max-width: 0;
+    color: rgba(255, 255, 255, 0.733);
+    font-size: 15px;
 }
 
-.search:focus{
+.search:focus,
+.search__active{
     max-width: 250px;
+    color: #fff;
 }
 
 .search__btn {
@@ -41,9 +41,10 @@ form {
 }
 
 .search__btn:hover {
-    color: rgb(136, 136, 136);
+    color: rgb(26, 26, 26);
 }
 
-.search__btn:hover + .search {
+.search__active::placeholder,
+.search:focus::placeholder {
     max-width: 250px;
 }

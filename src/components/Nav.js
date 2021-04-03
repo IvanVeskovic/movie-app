@@ -35,6 +35,7 @@ const Nav = () => {
 
     const handleClearResults = () => {
         setResults([]);
+        setSearch('');
     }
 
     return ( 
@@ -51,7 +52,7 @@ const Nav = () => {
                 </div>
                 <div className="nav__link">
                     <Link to='/tv' >
-                        TV Shows    
+                        TV Shows
                     </Link>
                 </div>
             </div>
@@ -62,7 +63,7 @@ const Nav = () => {
                 <div className="nav__results">
                 {
                     results.map(movie => (
-                        <Link to={`/about/${movie.id}` }  key={movie.id} >
+                        <Link to={`/about/movie/${movie.id}` }  key={movie.id} >
                             <div className='nav__results__item' onClick={handleClearResults}>
                                 <img src={base_url + `${movie?.backdrop_path || movie?.poster_path}`} alt="img" className='nav__results__img' />
                                 <span className="nav__results__title">{movie.title}</span>

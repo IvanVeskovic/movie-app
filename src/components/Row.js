@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from './axios';
 
 import YouTube from 'react-youtube';
@@ -7,9 +7,19 @@ import movieTrailer from 'movie-trailer';
 import './row.css';
 import Card from './Card';
 
-const Row = ({title, fetchUrl, isLargeRow, isTvShow}) => {
+import { MovieContext } from './MovieContext';
+
+const Row = ({title, fetchUrl, isLargeRow, isTvShow, isFavorite}) => {
     const [movies, setMovies] = useState([]);
     const [trailerUrl, setTrailerUrl] = useState('');
+
+    const [myList, setMyList] = useContext(MovieContext);
+
+    useEffect(() => {
+        if(isFavorite && myList.length > 0){
+            setMovies(myList);
+        }
+    }, [movies, myList])
 
     useEffect(() => {   
         const fetchData = async () => {
@@ -42,13 +52,13 @@ const Row = ({title, fetchUrl, isLargeRow, isTvShow}) => {
 
     return ( 
         <div className='row'>
-            <h2>{title}</h2>
+            <h2 className={isFavorite ? 'row__heading--main' : ''} >{title}</h2>
             <div className="row__posters">
-                {
-                    movies 
+                {   
+                    movies
                     &&
                     movies.map(movie => (
-                        <Card movie={movie} key={movie.id} handleClick={handleClick} trailerUrl={trailerUrl} setTrailerUrl={setTrailerUrl} isLargeRow={isLargeRow} isTvShow={isTvShow} />
+                        <Card movie={movie} key={movie.id} handleClick={handleClick} trailerUrl={trailerUrl} setTrailerUrl={setTrailerUrl} isLargeRow={isLargeRow} isTvShow={isTvShow} isFavorite={isFavorite} />
                     ))
                 }
             </div>

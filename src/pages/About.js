@@ -9,7 +9,7 @@ import movieTrailer from 'movie-trailer';
 
 import spinner from '../img/spinner.gif';
 
-import './about.css'
+import './about.scss'
 import Suggestions from "../components/Suggestions";
 
 const About = () => {
@@ -101,7 +101,7 @@ const About = () => {
                                 <img className='cast__img' src={base_url + cast?.profile_path} alt=""/>
                                 <div className="cast__name">{cast.original_name}</div>
                             </div>
-                            <div className="cast_character">{cast.character}</div>
+                            <div className="cast__character">{cast.character}</div>
                         </div>
                     ))
                 }

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from './axios';
 
-import './nav.css';
+import './nav.scss';
 import Search from './Search';
+
+import Axios from 'axios';
 
 const Nav = () => {
     const [show, setShow] = useState(false);
@@ -23,14 +25,26 @@ const Nav = () => {
     },[])
 
     useEffect(() => {
+        const source = Axios.CancelToken.source();
         const fetchData = async () => {
-            if(search !== ''){
-                const req = await axios.get(`/search/movie?api_key=6adf23324df69a693d26feff956cd872&language=en-US&query=${search}`)
-
-                setResults(req.data.results.slice(0, 10));
+            try {
+                if(search !== ''){
+                    const req = await axios.get(`/search/movie?api_key=6adf23324df69a693d26feff956cd872&language=en-US&query=${search}`, {cancelToken: source.token})
+                    setResults(req.data.results.slice(0, 10));
+                }
+            } catch (err) {
+                if(Axios.isCancel(err)) {
+                    console.log('canceled nav');
+                } else {
+                    throw err;
+                }
             }
         }
         fetchData();
+
+        return () => {
+            source.cancel();
+        }
     }, [search])
 
     const handleClearResults = () => {
@@ -39,7 +53,7 @@ const Nav = () => {
     }
 
     return ( 
-        <nav className={`nav ${show && 'nav__black'}`}>
+        <nav className={`nav ${show && 'nav--black'}`}>
             <Link to='/'>
                 <span className='nav__logo'>M&T</span>
             </Link>

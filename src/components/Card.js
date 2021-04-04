@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import './card.css'
+import './card.scss'
 import { MovieContext } from './MovieContext';
 
 const base_url = "https://image.tmdb.org/t/p/original/";
@@ -18,7 +18,7 @@ const Card = ({movie, isLargeRow, handleClick, isTvShow, isFavorite}) => {
         <div className='card'>
             <img   
                 onClick={canClick ? () => handleClick(movie) : undefined}
-                className={`card__poster ${isLargeRow ? "card__posterLarge" : ''}`}
+                className={`card__poster ${isLargeRow ? "card__poster--large" : ''}`}
                 src={`${base_url}${movie.poster_path}`} 
                 alt={movie.original_name} />
                     <div className="card__poster__more">

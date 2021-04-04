@@ -1,0 +1,98 @@
+.about {
+    min-height: 100vh;
+
+    &__heading {
+        color: #fff;
+        font-size: 3rem;
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    &__video:first-child {
+        margin: 0 auto;
+    }
+}
+
+.cast {
+    color: #fff;
+    margin: 0 auto;
+    max-width: 700px;
+    text-align: center;
+
+    @media only screen and (max-width: 900px) {
+        width: 100%;
+    }
+
+    &__box {
+        display: flex;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        margin-bottom: 10px;
+
+        @media only screen and (max-width: 600px) {
+            justify-content: space-between;
+        }
+    }
+
+    &__wraper {
+        display: flex;
+        align-items: center;
+        min-width: 300px;
+        margin-left: 10%;
+
+        @media only screen and (max-width: 900px) {
+            margin-left: 3rem;
+        }
+
+        @media only screen and (max-width: 600px) {
+            margin-left: 1rem;
+        }
+    }
+
+    &__img {
+        height: 80px;
+        width: 60px;
+        object-fit: cover;
+        margin-right: 1rem;
+    }
+
+    &__name {
+        // flex: 1;
+    }
+
+    &__character {
+        margin-right: auto;
+        font-style: italic;
+
+        @media only screen and (max-width: 900px) {
+            margin-left: auto;
+            margin-right: 3rem;
+        }
+
+        @media only screen and (max-width: 600px) {
+            margin-right: 1rem;
+        }
+    }
+
+    &__btn {
+        margin: 1rem auto;
+        display: inline-block;
+        padding: .5rem 2rem;
+        background-color: #fff;
+        outline: none;
+        border: none;
+        color: rgb(59, 59, 59);
+        transition: all .2s ease;
+        cursor: pointer;
+        font-size: 17px;
+        font-weight: 700;
+        border-radius: 5px;
+
+        &:hover {
+            color: #fff;
+            background-color: rgb(59, 59, 59);
+        }
+    }
+} 

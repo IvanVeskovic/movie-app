@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {useHistory} from 'react-router-dom';
-import './search.css';
+import './search.scss';
 
 const Search = ({search, setSearch, results, handleClearResults}) => {
     const [isActive, setIsActive] = useState(false);
@@ -29,7 +29,7 @@ const Search = ({search, setSearch, results, handleClearResults}) => {
         onMouseEnter={() => setIsActive(true)} 
         onMouseLeave={() => setIsActive(false)}        
         >
-            <button type="submit" className='search__btn' onClick={() => setIsActive(!isActive)}>
+            <button type="button" className='search__btn' onClick={() => setIsActive(!isActive)}>
             <i className="fas fa-search"></i>
             </button>
             <input 

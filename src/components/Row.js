@@ -4,8 +4,10 @@ import axios from './axios';
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
 
-import './row.css';
+import './row.scss';
 import Card from './Card';
+
+import Axios from 'axios';
 
 import { MovieContext } from './MovieContext';
 
@@ -21,13 +23,26 @@ const Row = ({title, fetchUrl, isLargeRow, isTvShow, isFavorite}) => {
         }
     }, [movies, myList])
 
-    useEffect(() => {   
+    useEffect(() => {  
+        let source = Axios.CancelToken.source();
+        
         const fetchData = async () => {
-            const request = await axios.get(fetchUrl);
-            setMovies(request.data.results);
-            return request;
+            try {
+                const request = await axios.get(fetchUrl, {cancelToken: source.token});
+                setMovies(request.data.results);
+            } catch (err) {
+                if(Axios.isCancel(err)){
+                    console.log('caught cancel row');
+                }else {
+                    throw err;
+                }
+            }
         }
         fetchData();
+
+        return () => {
+            source.cancel();
+        }
     }, [fetchUrl]);
 
     const opts = {
@@ -42,11 +57,12 @@ const Row = ({title, fetchUrl, isLargeRow, isTvShow, isFavorite}) => {
         if(trailerUrl){
             setTrailerUrl('');
         } else {
-            movieTrailer(movie?.title || movie?.name || movie?.original_name || " ")
+            movieTrailer(movie?.original_name || movie?.title || movie?.name || " ")
             .then(url => {
                 const urlParams = new URLSearchParams(new URL(url).search);
                 setTrailerUrl(urlParams.get('v'));
-            }).catch(err => console.log(err, movie.title))
+            })
+            .catch(err => console.log(err))
         }
     };
 

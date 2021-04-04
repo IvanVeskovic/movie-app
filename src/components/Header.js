@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import './header.css';
+import './header.scss';
 import { MovieContext } from './MovieContext';
 
 const Header = ({movieParam, isTvShow}) => {
     const [movie, setMovie] = useState([]);
-    const [myList, setMyList ,handleAddUniqueToMyList] = useContext(MovieContext);
+    const [myList, setMyList, handleAddUniqueToMyList] = useContext(MovieContext);
 
     useEffect(() => {
         setMovie(movieParam);

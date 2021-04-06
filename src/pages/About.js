@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from '../components/axios';
 import Axios from 'axios';
 import Header from "../components/Header";
@@ -8,6 +8,7 @@ import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
 
 import spinner from '../img/spinner.gif';
+import person from '../img/person.png';
 
 import './about.scss'
 import Suggestions from "../components/Suggestions";
@@ -23,7 +24,6 @@ const About = () => {
     const base_url = "https://image.tmdb.org/t/p/original/";
 
     useEffect(() => {
-        // const source = Axios.CancelToken.source();
         const source = Axios.CancelToken.source();
 
         const fetchData = async () => {
@@ -54,6 +54,10 @@ const About = () => {
     }, [id, type, movie]);
 
     useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
+    useEffect(() => {
         handleLoad(movie);
     }, [movie])
 
@@ -68,10 +72,6 @@ const About = () => {
             autplay: 1
         },
     };
-
-    useLayoutEffect(() => {
-        window.scrollTo(0, 0)
-    });
 
     const handleLoad = (movie) => {
         movieTrailer(movie?.title || movie?.name || movie?.original_name || " ")
@@ -98,7 +98,7 @@ const About = () => {
                         .map(cast => (
                         <div className="cast__box" key={cast.id}>
                             <div className="cast__wraper">
-                                <img className='cast__img' src={base_url + cast?.profile_path} alt=""/>
+                                <img className='cast__img' src={base_url + cast?.profile_path} alt="Profile"/>
                                 <div className="cast__name">{cast.original_name}</div>
                             </div>
                             <div className="cast__character">{cast.character}</div>
@@ -109,7 +109,7 @@ const About = () => {
             </div>
 
             <h2 className="about__heading">Suggestions</h2>
-            {movie && <Suggestions id={movie.id} />}
+            {movie && <Suggestions id={movie.id} type={type} />}
         </div>
      );
 }

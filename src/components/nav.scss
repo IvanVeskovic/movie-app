@@ -3,16 +3,20 @@
     top: 0;
     z-index: 1;
     width: 100%;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    transition: all .5s ease-in;
-    height: 70px;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
     align-items: center;
+    transition: all .5s ease-in;
+
+    @media only screen and (max-width: 900px) {
+        // flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+}
 
      @media only screen and (max-width: 500px) {
             padding: 5px;
-            height: 60px;
     }
 
     &__logo {
@@ -40,15 +44,20 @@
         background: #e74d3cee;
         padding: .5rem 2rem;
         font-size: 1rem;
-        margin-right: auto;
+        // margin-right: auto;
         margin-left: 1rem;
         border-radius: 5px;
+        justify-self: center;
+        align-items: center;
+
+        @media only screen and (max-width: 900px) {
+            justify-self: flex-end;
+        }
 
         @media only screen and (max-width: 600px) {
             font-size: .9rem;
             padding: .4rem 1rem;
-            margin-left: auto;
-            margin-right: 0;
+            // width: fit-content;
         }
 
         @media only screen and (max-width: 500px) {
@@ -78,7 +87,8 @@
             background-color: #fff;
             height: 2px;
             width: 0;
-            transition: all .2s;
+            transition: width .2s;
+            backface-visibility: hidden;
         }
     }
     
@@ -96,10 +106,17 @@
         overflow-y: auto;
         max-height: 100vh;
 
-        @media only screen and (max-width: 600px) {
+        @media only screen and (max-width: 900px) {
             width: 300px;
-            top: 110px;
-            left: 20px;
+            top: 100px;
+            // left: 20px;
+        }
+
+        @media only screen and (max-width: 500px) {
+            width: 300px;
+            top: 90px;
+            right: 3px;
+            // left: 20px;
         }
 
         &__img {

@@ -4,6 +4,7 @@ import './search.scss';
 
 const Search = ({search, setSearch, results, handleClearResults}) => {
     const [isActive, setIsActive] = useState(false);
+    const [toggle, setToggle] = useState(false);
 
     const history = useHistory();
 
@@ -26,10 +27,11 @@ const Search = ({search, setSearch, results, handleClearResults}) => {
 
     return ( 
         <form onSubmit={handleSubmit} 
-        onMouseEnter={() => setIsActive(true)} 
-        onMouseLeave={() => setIsActive(false)}        
+             
         >
-            <button type="button" className='search__btn' onClick={() => setIsActive(!isActive)}>
+            <button type="button" className='search__btn' onClick={!isActive ? () => setIsActive(true) : handleSubmit} 
+            onMouseEnter={() => setIsActive(true)} 
+            >
             <i className="fas fa-search"></i>
             </button>
             <input 
@@ -40,7 +42,16 @@ const Search = ({search, setSearch, results, handleClearResults}) => {
             className={`search ${isActive ? 'search__active' : ''}`} 
             onChange={handleChange} 
             onSubmit={handleSubmit}
-            autoComplete='off'  />
+            autoComplete='off'
+            onMouseEnter={() => setIsActive(true)} 
+            onMouseLeave={() => setIsActive(false)}     />
+            <div className="toggle">
+                Movie
+                <span className='toggle__outer' onClick={() => setToggle(!toggle)}>
+                    <span className={`toggle__inner ${toggle && 'toggle__inner--active'}`}></span>
+                </span>
+                Tv
+            </div>
         </form>
     )
 }

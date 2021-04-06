@@ -6,7 +6,7 @@ import { MovieContext } from './MovieContext';
 
 const Header = ({movieParam, isTvShow}) => {
     const [movie, setMovie] = useState([]);
-    const [myList, setMyList, handleAddUniqueToMyList] = useContext(MovieContext);
+    const [,,handleAddUniqueToMyList] = useContext(MovieContext);
 
     useEffect(() => {
         setMovie(movieParam);

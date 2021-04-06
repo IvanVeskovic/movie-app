@@ -6,23 +6,24 @@ export const MovieContext = createContext();
 export const MovieProvider = (props) => {
     const [myList, setMyList] = useState([]);
 
-    const handleAddUniqueToMyList = (movie) => {
+    const handleAddUniqueToMyList = (movie, isTvShow) => {
         if(!myList.some(el => el.id === movie.id)){
-            setMyList([...myList, movie])
+            setMyList([...myList, {...movie, type: `${isTvShow ? 'tv' : 
+        'movie'}`}])
         }
     }
 
     // Run once hen app start
     useEffect(() => {
         getLocalList();
-    },[]);
+    }, []);
     // Use Effect
     useEffect(() => {
         saveLocalList();
     }, [myList])
 
 
-  // Save to Local
+    // Save to Local
     const saveLocalList = () => {
         localStorage.setItem('myList', JSON.stringify(myList));
     }

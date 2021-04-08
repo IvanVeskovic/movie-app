@@ -66,7 +66,7 @@ const Row = ({title, fetchUrl, isLargeRow, isTvShow, isFavorite}) => {
                     ))
                 }
             </div>
-            {trailerUrl && <Video trailerUrl={trailerUrl} />}
+            {trailerUrl && <Video trailerUrl={trailerUrl} setTrailerUrl={setTrailerUrl} />}
         </div>
      );
 }

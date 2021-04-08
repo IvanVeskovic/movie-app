@@ -10,7 +10,7 @@ import {MovieProvider} from './components/MovieContext';
 function App() {
   return (
     <MovieProvider>
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router>
         <div className="App">
         <Nav />
           <Switch>

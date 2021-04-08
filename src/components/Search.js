@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import {useHistory} from 'react-router-dom';
 import './search.scss';
 
-const Search = ({search, setSearch, results, handleClearResults}) => {
+const Search = ({search, setSearch, results, handleClearResults, toggle, setToggle}) => {
     const [isActive, setIsActive] = useState(false);
-    const [toggle, setToggle] = useState(false);
-
     const history = useHistory();
 
     const handleChange = (e) => {
@@ -26,9 +24,7 @@ const Search = ({search, setSearch, results, handleClearResults}) => {
     }
 
     return ( 
-        <form onSubmit={handleSubmit} 
-             
-        >
+        <form onSubmit={handleSubmit}>
             <button type="button" className='search__btn' onClick={!isActive ? () => setIsActive(true) : handleSubmit} 
             onMouseEnter={() => setIsActive(true)} 
             >

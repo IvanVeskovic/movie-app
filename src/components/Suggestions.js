@@ -10,7 +10,6 @@ const Suggestions = ({id, type}) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            // temporary problem to fetch similar movies
             const request = await axios.get(`/${type}/${id}/recommendations?api_key=6adf23324df69a693d26feff956cd872&language=en-US&page=1`);
 
             setMovies(request.data.results.slice(0, 5));

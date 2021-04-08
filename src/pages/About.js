@@ -3,15 +3,9 @@ import React, { useEffect, useState } from 'react';
 import axios from '../components/axios';
 import Axios from 'axios';
 import Header from "../components/Header";
-
-import YouTube from 'react-youtube';
-import movieTrailer from 'movie-trailer';
-
-import spinner from '../img/spinner.gif';
-import person from '../img/person.png';
-
 import './about.scss'
 import Suggestions from "../components/Suggestions";
+import Video from "../components/Video";
 
 const About = () => {
     const {id} = useParams();
@@ -65,29 +59,20 @@ const About = () => {
         setShow(show + 10);
     }
 
-    const opts = {
-        height: '390px',
-        width: '100%',
-        playerVars: {
-            autplay: 1
-        },
-    };
-
-    const handleLoad = (movie) => {
-        movieTrailer(movie?.title || movie?.name || movie?.original_name || " ")
-            .then(url => {
-                const urlParams = new URLSearchParams(new URL(url).search);
-                setTrailerUrl(urlParams.get('v'));
-            }).catch(err => console.log(err));
-    }
+    const handleLoad = async (movie) => {
+            const request = await axios.get(`https://api.themoviedb.org/3/${type}/${movie.id}/videos?api_key=6adf23324df69a693d26feff956cd872&language=en-US`);
+            const trailerYouTube = request.data.results.find(trailer => trailer.site === 'YouTube');
+            if(trailerYouTube) {
+                setTrailerUrl(trailerYouTube.key)
+            }   
+        }
 
     return ( 
         <div className='about' >
             <Header movieParam={movie} />
 
             <h2 className='about__heading'>Trailer</h2>
-           { <YouTube videoId={trailerUrl} opts={opts} /> || spinner}
-
+            <Video trailerUrl={trailerUrl} title={movie?.title || movie?.name || movie?.original_name} />
 
             <h2 className="about__heading">
                 Casts

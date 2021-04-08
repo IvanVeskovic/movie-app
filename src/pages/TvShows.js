@@ -10,6 +10,10 @@ const TvShows = () => {
     const [tvShow, setTvShow] = useState([]);
     const [myList] = useContext(MovieContext);
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
         useEffect(() => {
             let source = Axios.CancelToken.source();
 

@@ -5,7 +5,7 @@ import { MovieContext } from './MovieContext';
 
 const base_url = "https://image.tmdb.org/t/p/original/";
 
-const Card = ({movie, isLargeRow, handleClick, isTvShow, isFavorite}) => {
+const Card = ({movie, isLargeRow, handleClick, isTvShow, isFavorite, trailerUrl, setTrailerUrl}) => {
     const canClick = handleClick ? true: false;
 
     const [ , setMyList, handleAddUniqueToMyList] = useContext(MovieContext);
@@ -23,7 +23,7 @@ const Card = ({movie, isLargeRow, handleClick, isTvShow, isFavorite}) => {
     }
 
     return ( 
-        <div className='card' onClick={() => console.log(movie)}>
+        <div className='card'>
             <img   
                 onClick={canClick ? () => handleClick(movie) : undefined}
                 className={`card__poster ${isLargeRow ? "card__poster--large" : ''}`}
@@ -42,7 +42,7 @@ const Card = ({movie, isLargeRow, handleClick, isTvShow, isFavorite}) => {
                                 <i onClick={() => handleAddUniqueToMyList(movie, isTvShow)} className="fas fa-heart"></i>
                             }
                         </div>
-                    </div>    
+                    </div>
         </div>
      );
 }

@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from './axios';
-
-import YouTube from 'react-youtube';
-import movieTrailer from 'movie-trailer';
-
 import './row.scss';
 import Card from './Card';
 
 import Axios from 'axios';
 
 import { MovieContext } from './MovieContext';
+import Video from './Video';
 
 const Row = ({title, fetchUrl, isLargeRow, isTvShow, isFavorite}) => {
     const [movies, setMovies] = useState([]);
@@ -44,26 +41,17 @@ const Row = ({title, fetchUrl, isLargeRow, isTvShow, isFavorite}) => {
             source.cancel();
         }
     }, [fetchUrl]);
-
-    const opts = {
-        height: '390px',
-        width: '100%',
-        playerVars: {
-            autplay: 1
-        },
-    };
     
-    const handleClick = (movie) => {
-        if(trailerUrl){
+    const handleClick = async (movie) => {
+        if(trailerUrl) {
             setTrailerUrl('');
         } else {
-            movieTrailer(movie?.original_name || movie?.title || movie?.name || " ")
-            .then(url => {
-                const urlParams = new URLSearchParams(new URL(url).search);
-                setTrailerUrl(urlParams.get('v'));
-            })
-            .catch(err => console.log(err))
-        }
+            const request = await axios.get(`https://api.themoviedb.org/3/${isTvShow ? 'tv' : 'movie'}/${movie.id}/videos?api_key=6adf23324df69a693d26feff956cd872&language=en-US`);
+            const trailerYouTube = request.data.results.find(trailer => trailer.site === 'YouTube');
+            if(trailerYouTube) {
+                setTrailerUrl(trailerYouTube.key)
+            }
+        }     
     };
 
     return ( 
@@ -78,7 +66,7 @@ const Row = ({title, fetchUrl, isLargeRow, isTvShow, isFavorite}) => {
                     ))
                 }
             </div>
-            {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
+            {trailerUrl && <Video trailerUrl={trailerUrl} />}
         </div>
      );
 }

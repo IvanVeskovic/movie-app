@@ -72,7 +72,7 @@ const Nav = () => {
                 </div>
             </div>
 
-            <Search search={search} setSearch={setSearch} results={results} handleClearResults={handleClearResults} />
+            <Search search={search} setSearch={setSearch} results={results} handleClearResults={handleClearResults} toggle={toggle} setToggle={setToggle} />
             {   search
                 &&
                 <div className="nav__results">
@@ -87,14 +87,6 @@ const Nav = () => {
                     ))
                 }
             </div>}
-
-            {/* <div className="toggle">
-                Movie
-                <span className='toggle__outer' onClick={() => setToggle(!toggle)}>
-                    <span className={`toggle__inner ${toggle && 'toggle__inner--active'}`}></span>
-                </span>
-                Tv
-            </div> */}
         </nav>
      );
 }

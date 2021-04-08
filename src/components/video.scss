@@ -1,0 +1,19 @@
+.video {
+    border: transparent;
+    background-color: transparent;
+    color: transparent;
+    height: 70vh;
+    padding-right: 20px;
+
+    @media only screen and (max-width: 600px) {
+        height: 50vh;
+    }
+}
+
+.video iframe {
+    border: transparent;
+    background-color: transparent;
+    color: transparent;
+    padding: 0;
+    margin: 0;
+}

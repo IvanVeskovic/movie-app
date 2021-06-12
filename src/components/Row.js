@@ -12,7 +12,7 @@ const Row = ({title, fetchUrl, isLargeRow, isTvShow, isFavorite}) => {
     const [movies, setMovies] = useState([]);
     const [trailerUrl, setTrailerUrl] = useState('');
 
-    const [myList] = useContext(MovieContext);
+    const {myList} = useContext(MovieContext);
 
     useEffect(() => {
         if(isFavorite && myList.length > 0){

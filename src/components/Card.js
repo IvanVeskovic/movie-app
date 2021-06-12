@@ -8,7 +8,7 @@ const base_url = "https://image.tmdb.org/t/p/original/";
 const Card = ({movie, isLargeRow, handleClick, isTvShow, isFavorite, trailerUrl, setTrailerUrl}) => {
     const canClick = handleClick ? true: false;
 
-    const [ , setMyList, handleAddUniqueToMyList] = useContext(MovieContext);
+    const {setMyList, handleAddUniqueToMyList} = useContext(MovieContext);
     
     const handleRemoveFromMyList = () => {
         setMyList(prevValue => prevValue.filter(el => el.id !== movie.id));

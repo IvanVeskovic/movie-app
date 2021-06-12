@@ -19,6 +19,7 @@
         overflow-x: scroll;
         padding: 20px;
         padding-bottom: 2rem;
+        scrollbar-width: none;
 
         &::-webkit-scrollbar {
             display: none;

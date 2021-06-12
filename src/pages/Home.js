@@ -8,7 +8,7 @@ import { MovieContext } from "../components/MovieContext";
 
 const Home = () => {
     const [movie, setMovie] = useState([]);
-    const [myList] = useContext(MovieContext);
+    const {myList} = useContext(MovieContext);
 
     useEffect(() => {
         const fetchData = async () => {

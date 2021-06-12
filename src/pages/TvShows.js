@@ -8,7 +8,7 @@ import Axios from 'axios';
 
 const TvShows = () => {
     const [tvShow, setTvShow] = useState([]);
-    const [myList] = useContext(MovieContext);
+    const {myList} = useContext(MovieContext);
 
     useEffect(() => {
         window.scrollTo(0, 0)

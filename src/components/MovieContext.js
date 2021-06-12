@@ -38,7 +38,7 @@ export const MovieProvider = (props) => {
 
 
     return(
-        <MovieContext.Provider value={[myList, setMyList, handleAddUniqueToMyList]}>
+        <MovieContext.Provider value={{myList, setMyList, handleAddUniqueToMyList}}>
             {props.children}
         </MovieContext.Provider>
     );

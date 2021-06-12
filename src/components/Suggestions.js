@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from './axios';
 import Card from './Card';
 import './suggestions.scss'
 
+import { MovieContext } from './MovieContext';
+
 
 const Suggestions = ({id, type}) => {
     const [movies, setMovies] = useState([]);
+    const {api_key} = useContext(MovieContext);
 
 
     useEffect(() => {
         const fetchData = async () => {
-            const request = await axios.get(`/${type}/${id}/recommendations?api_key=6adf23324df69a693d26feff956cd872&language=en-US&page=1`);
+            const request = await axios.get(`/${type}/${id}/recommendations?api_key=${api_key}&language=en-US&page=1`);
 
             setMovies(request.data.results.slice(0, 5));
         }

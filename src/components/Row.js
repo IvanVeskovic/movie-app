@@ -12,7 +12,7 @@ const Row = ({title, fetchUrl, isLargeRow, isTvShow, isFavorite}) => {
     const [movies, setMovies] = useState([]);
     const [trailerUrl, setTrailerUrl] = useState('');
 
-    const {myList} = useContext(MovieContext);
+    const {myList, api_key} = useContext(MovieContext);
 
     useEffect(() => {
         if(isFavorite && myList.length > 0){
@@ -46,7 +46,7 @@ const Row = ({title, fetchUrl, isLargeRow, isTvShow, isFavorite}) => {
         if(trailerUrl) {
             setTrailerUrl('');
         } else {
-            const request = await axios.get(`https://api.themoviedb.org/3/${isTvShow ? 'tv' : 'movie'}/${movie.id}/videos?api_key=6adf23324df69a693d26feff956cd872&language=en-US`);
+            const request = await axios.get(`https://api.themoviedb.org/3/${isTvShow ? 'tv' : 'movie'}/${movie.id}/videos?api_key=${api_key}&language=en-US`);
             const trailerYouTube = request.data.results.find(trailer => trailer.site === 'YouTube');
             if(trailerYouTube) {
                 setTrailerUrl(trailerYouTube.key)

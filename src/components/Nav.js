@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from './axios';
 
@@ -7,11 +7,16 @@ import Search from './Search';
 
 import Axios from 'axios';
 
+import { MovieContext } from './MovieContext';
+
 const Nav = () => {
     const [show, setShow] = useState(false);
     const [search, setSearch] = useState('');
     const [results, setResults] = useState([]);
     const [toggle, setToggle] = useState(false);
+
+    const {api_key} = useContext(MovieContext);
+
     
     const base_url = "https://image.tmdb.org/t/p/original/";
 
@@ -23,6 +28,7 @@ const Nav = () => {
                 setShow(false);
             }
         });
+        
     },[])
 
     useEffect(() => {
@@ -30,7 +36,7 @@ const Nav = () => {
         const fetchData = async () => {
             try {
                 if(search !== ''){
-                    const req = await axios.get(`/search/${toggle ? 'tv' : 'movie'}?api_key=6adf23324df69a693d26feff956cd872&language=en-US&query=${search}`, {cancelToken: source.token})
+                    const req = await axios.get(`/search/${toggle ? 'tv' : 'movie'}?api_key=${api_key}&language=en-US&query=${search}`, {cancelToken: source.token})
                     setResults(req.data.results.slice(0, 10));
                 }
             } catch (err) {

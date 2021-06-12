@@ -5,7 +5,7 @@ import { MovieContext } from './MovieContext';
 
 const base_url = "https://image.tmdb.org/t/p/original/";
 
-const Card = ({movie, isLargeRow, handleClick, isTvShow, isFavorite, trailerUrl, setTrailerUrl}) => {
+const Card = ({movie, isLargeRow, handleClick, isTvShow, isFavorite}) => {
     const canClick = handleClick ? true: false;
 
     const {setMyList, handleAddUniqueToMyList} = useContext(MovieContext);

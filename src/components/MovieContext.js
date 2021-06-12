@@ -6,6 +6,8 @@ export const MovieContext = createContext();
 export const MovieProvider = (props) => {
     const [myList, setMyList] = useState([]);
 
+    const api_key = process.env.REACT_APP_TMDB_API_KEY;
+
     const handleAddUniqueToMyList = (movie, isTvShow) => {
         if(!myList.some(el => el.id === movie.id)){
             setMyList([...myList, {...movie, type: `${isTvShow ? 'tv' : 
@@ -22,7 +24,6 @@ export const MovieProvider = (props) => {
         saveLocalList();
     }, [myList])
 
-
     // Save to Local
     const saveLocalList = () => {
         localStorage.setItem('myList', JSON.stringify(myList));
@@ -38,7 +39,7 @@ export const MovieProvider = (props) => {
 
 
     return(
-        <MovieContext.Provider value={{myList, setMyList, handleAddUniqueToMyList}}>
+        <MovieContext.Provider value={{myList, setMyList, handleAddUniqueToMyList, api_key}}>
             {props.children}
         </MovieContext.Provider>
     );

@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from '../components/axios';
 import Axios from 'axios';
 import Header from "../components/Header";
 import './about.scss'
 import Suggestions from "../components/Suggestions";
 import Video from "../components/Video";
+import { MovieContext } from "../components/MovieContext";
 
 const About = () => {
     const {id} = useParams();
@@ -13,7 +14,9 @@ const About = () => {
     const [movie, setMovie] = useState([]);
     const [cast, setCast] = useState([]);
     const [show, setShow] = useState(10);
-    const [trailerUrl, setTrailerUrl] = useState('')
+    const [trailerUrl, setTrailerUrl] = useState('');
+
+    const {api_key} = useContext(MovieContext);
 
     const base_url = "https://image.tmdb.org/t/p/original/";
 
@@ -22,7 +25,7 @@ const About = () => {
 
         const fetchData = async () => {
             try {
-                const req = await axios.get(`/${type}/${id}?api_key=6adf23324df69a693d26feff956cd872&language=en-US`, {cancelToken: source.token});
+                const req = await axios.get(`/${type}/${id}?api_key=${api_key}&language=en-US`, {cancelToken: source.token});
                 setMovie(req.data);
             } catch (err) {
                 if(Axios.isCancel(err)){
@@ -41,7 +44,7 @@ const About = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const req = await axios.get(`/${type}/${id}/credits?api_key=6adf23324df69a693d26feff956cd872&language=en-US`);
+            const req = await axios.get(`/${type}/${id}/credits?api_key=${api_key}&language=en-US`);
             setCast(req.data.cast);
         }
         fetchData();
@@ -60,7 +63,7 @@ const About = () => {
     }
 
     const handleLoad = async (movie) => {
-            const request = await axios.get(`https://api.themoviedb.org/3/${type}/${movie.id}/videos?api_key=6adf23324df69a693d26feff956cd872&language=en-US`);
+            const request = await axios.get(`https://api.themoviedb.org/3/${type}/${movie.id}/videos?api_key=${api_key}&language=en-US`);
             const trailerYouTube = request.data.results.find(trailer => trailer.site === 'YouTube');
             if(trailerYouTube) {
                 setTrailerUrl(trailerYouTube.key)
